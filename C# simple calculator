@@ -1,0 +1,159 @@
+//simple calculator with addition, subtraction, multiplication and division fuction
+
+using System;
+
+class HelloWorld 
+{
+    static decimal numbers_1() //first number
+    {
+        Console.WriteLine("Enter the first number");
+        decimal numb1 = decimal.Parse(Console.ReadLine());
+        
+        return numb1;
+    }
+    
+    static decimal numbers_2() //secoud number
+    {
+        Console.WriteLine("Enter the secound number");
+        decimal numb2 = decimal.Parse(Console.ReadLine());
+        
+        return numb2;
+    }
+    
+    static decimal add(decimal a, decimal b) //addicion funcion
+    {
+        return a + b;
+    }
+    
+    static decimal subtract(decimal a, decimal b) //subtraction function
+    {
+        return a - b;
+    }
+    
+    static decimal multiply(decimal a, decimal b) //multiplication function
+    {
+        return a*b;
+    }
+    
+    static decimal division(decimal a, decimal b) //division function
+    {
+        return a/b;
+    }
+    
+    static int question(int max) //check if the option is invalid
+    {
+        bool repeat = true;
+        int opition = 0;
+        
+        do
+        {
+        int option = int.Parse(Console.ReadLine());
+        
+        if(option < 1 || option > max)
+        {
+            Console.WriteLine("Invalid option. Try again");
+            continue;
+        }
+        else
+        {
+            return option;
+        }
+        }while(repeat == true);
+        return 0;
+    }
+    
+    static bool repeat() //repeat the calculator to do it again
+    {
+        bool repeat = true;
+        do
+        {
+        Console.WriteLine("Repeat?");
+        Console.WriteLine("1-YES\n2-NO");
+        int option = int.Parse(Console.ReadLine());
+        
+        if(option < 1 || option > 2)
+        {
+            Console.Clear();
+            Console.WriteLine("Wrong option. Try again");
+            continue;
+        } else if(option == 1)
+        {
+            return true;
+        } else if(option == 2)
+        {
+            return false;
+        }
+        }while(repeat == true);
+        return false;
+    }
+    
+    static int Main() 
+    {
+        bool rodar = true;
+        
+        do
+        {
+            Console.Clear();
+            decimal a =0;
+            decimal b =0;
+            decimal temp = 0;
+            char c = '?';
+            
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("\tCALCULATOR");
+            Console.WriteLine("-------------------------------");
+            
+            Console.WriteLine("Choose a opition");
+            Console.WriteLine("1- ADD");
+            Console.WriteLine("2- SUBTRACT");
+            Console.WriteLine("3- MULTIPLY");
+            Console.WriteLine("4- DIVISION");
+            Console.WriteLine("5- Exit");
+            
+            int option = question(5);
+            
+            if(option == 5)
+            {
+                return 0;
+            }
+            
+            a = numbers_1();
+            b = numbers_2();
+            
+            switch(option)
+            {
+                case(1):
+                {
+                    temp = add(a,b);
+                    c = '+';
+                    break;
+                }
+                case(2):
+                {
+                    temp = subtract(a,b);
+                    c = '-';
+                    break;
+                }
+                case(3):
+                {
+                    temp = multiply(a,b);
+                    c = '*';
+                    break;
+                }
+                case(4):
+                {
+                    temp = division(a,b);
+                    c = '/';
+                    break;
+                }
+            }
+            
+            Console.Clear();
+            Console.WriteLine($"{a} {c} {b} = {temp}");
+            
+            rodar = repeat();
+            
+        }while(rodar == true);
+     return 0;   
+    }
+}
